@@ -15,7 +15,8 @@ describe Spree::Order do
   context "adding an item with options" do
 
     it "should associate the options with the line item" do
-      options = { option_type.id => option_value.id }
+      options = [ option_value.id ]
+
       @order.should_receive(:contains?).with(@variant).and_return( line_item )
       line_item.should_receive(:save).twice # once in the original method, another to attach the options
 
