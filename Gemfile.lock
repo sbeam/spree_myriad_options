@@ -77,6 +77,11 @@ GEM
       railties (>= 3.0.0)
     ffaker (1.12.1)
     ffi (1.0.11)
+    guard (1.0.2)
+      ffi (>= 0.5.0)
+      thor (~> 0.14.6)
+    guard-rspec (0.5.11)
+      guard (>= 0.8.4)
     highline (1.6.11)
     hike (1.2.1)
     httparty (0.8.3)
@@ -201,6 +206,7 @@ DEPENDENCIES
   capybara
   factory_girl_rails (~> 1.7)
   ffaker
+  guard-rspec (~> 0.5.0)
   rspec-rails (~> 2.9.0)
   shoulda-matchers (~> 1.0.0)
   spree_myriad_options!

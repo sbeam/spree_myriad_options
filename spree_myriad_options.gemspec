@@ -25,4 +25,5 @@ Gem::Specification.new do |s|
   s.add_development_dependency 'ffaker'
   s.add_development_dependency 'shoulda-matchers',  '~> 1.0.0'
   s.add_development_dependency 'sqlite3'
+  s.add_development_dependency 'guard-rspec', '~> 0.5.0'
 end
