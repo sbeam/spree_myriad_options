@@ -9,6 +9,7 @@ require File.expand_path("#{path_to_test_store}/config/environment.rb",  __FILE_
 
 require 'rspec/rails'
 require 'ffaker'
+require 'shoulda-matchers'
 
 # Run any available migration
 ActiveRecord::Migrator.migrate File.expand_path("#{path_to_test_store}/db/migrate/", __FILE__)
