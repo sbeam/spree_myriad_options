@@ -2,6 +2,8 @@ require 'spec_helper'
 
 describe Spree::LineItem do
 
+  it { should have_many(:option_values).through(:line_item_option_values) }
+
   let(:option_type)  { mock_model(Spree::OptionType, :name => 'Color', :presentation => 'Color') }
   let(:option_value) { mock_model(Spree::OptionValue, :name => 'Red', :presentation => 'Red', :option_type => option_type, :adder => 2.0) }
   let(:variant)      { mock_model(Spree::Variant, :price => 66.99) }
