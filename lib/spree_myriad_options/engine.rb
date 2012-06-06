@@ -1,5 +1,9 @@
 module SpreeMyriadOptions
   class Engine < Rails::Engine
+    # TODO this is a hack to getaround a spree namespace issue, see GH#1580
+    module Spree; end
+    require 'spree/core'
+
     engine_name 'spree_myriad_options'
     isolate_namespace Spree
 
