@@ -11,17 +11,25 @@ describe Spree::LineItem do
   let(:order)        { Factory.build :order }
 
   before do
-    line_item.stub(:variant => variant, :order => order, :option_values => [option_value])
+    line_item.stub(:variant => variant, :order => order)
   end
 
   context "#options" do
     it "should return the list of option types and values" do
+      line_item.stub :option_values => [option_value]
       line_item.options.should == [[ option_type , option_value ]]
     end
+    it "should save copies of option type and value to join table", :pending => 'its horribly ugly' do
+      line_item.option_values << option_value
+      line_item.save
+      line_item.option_types.should == [[ option_type.name , option_type.presentation ]]
+    end
+    it "should delegate options values to join table"
   end
 
   context "#price" do
     it "should include the options adders when pricing" do
+      line_item.stub :option_values => [option_value]
       option_value.should_receive :adder
       line_item.valid?
       line_item.price.to_f.should == 68.99
