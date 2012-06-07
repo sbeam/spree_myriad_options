@@ -3,7 +3,8 @@ Spree::LineItem.class_eval do
   has_many :line_item_option_values
   has_many :option_values, :through => :line_item_option_values
 
-  before_save :copy_options_values
+  # TODO pending copy of options to the join table
+  # before_save :copy_options_values
 
   def options
     self.option_values.map { |val| [ val.option_type, val ] }
