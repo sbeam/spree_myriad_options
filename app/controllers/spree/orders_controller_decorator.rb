@@ -9,13 +9,17 @@ Spree::OrdersController.class_eval do
     @order = current_order(true)
 
     if params[:options].present? && params[:variants]
+
       params[:variants].each do |variant_id, quantity|
         if variant = Spree::Variant.find(variant_id)
           quantity = quantity.to_i
-          option_value_ids = params[:options].values.map(&:to_i)
-          @order.add_variant(variant, quantity, option_value_ids)
+
+          option_values = Spree::OptionValue.where(:id => params[:options].values)
+
+          @order.add_variant(variant, quantity, option_values)
         end
       end
+
       params.delete(:variants) # prevent populate_orig from adding again
     end
 
