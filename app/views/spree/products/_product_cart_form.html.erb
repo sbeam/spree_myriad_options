@@ -7,7 +7,7 @@
       <ul>
 
         <%- option_type.option_values.each do |val| %>
-          <li>
+          <li id="option_value_<%= val.id %>">
             <%-
               checked = false # TODO
             %>

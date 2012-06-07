@@ -26,6 +26,10 @@ describe "Product detail page" do
         find('.product-option-type li').should have_css(%Q|input[type=radio][value="#{@option_value.id}"]|)
       end
 
+      it "should show the adder for a given option value" do
+        find("li#option_value_#{@option_value.id}").should have_content(@option_value.adder)
+      end
+
       context "after adding to cart" do
         before do
           choose 'Red'
