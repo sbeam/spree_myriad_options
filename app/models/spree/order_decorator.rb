@@ -1,7 +1,8 @@
 Spree::Order.class_eval do
 
   def contains? variant, options
-    line_items.detect { |line_item| line_item.variant_id == variant.id }
+    options ||= []
+    line_items.detect { |line_item| line_item.variant_id == variant.id && line_item.option_values == options }
   end
 
 

@@ -11,13 +11,14 @@ describe Spree::Order do
     @line_item = Factory.build(:line_item, :order => @order) #let(:line_item) { Spree::LineItem.new :quantity => 1 }
     @variant = mock_model(Spree::Variant, :product => "product1", :price => 20.00)
     Spree::OptionValue.stub(:find).and_return(option_value)
+    #Spree::LineItem.any_instance.stub(:order => @order)
   end
 
   context "adding an item with options" do
 
     it "should associate the options with the line item" do
       Spree::LineItem.stub(:new).and_return(@line_item)
-      @order.stub(:contains?).and_return( false )
+      @order.should_receive(:contains?).with(@variant, [option_value]).and_return( false )
 
       @order.add_variant(@variant, 1, [option_value])
       @line_item.option_values.should == [option_value]
@@ -33,15 +34,25 @@ describe Spree::Order do
 
   context "adding the same variant with different options" do
 
-    it "should add two line items" do
-
-      @order.should_receive(:contains?).with(@variant, [option_value]).and_return( @line_item )
-      @order.should_receive(:contains?).with(@variant, [option_value2]).and_return( false )
+    it "should add two line items when options are different" do
 
       @order.add_variant(@variant, 1, [ option_value ])
       @order.add_variant(@variant, 1, [ option_value2 ])
 
-      @order.line_items.count.should == 2
+      @order.line_items.length.should == 2
+
+    end
+
+    it "should update the line item when options are the same" do
+
+      Spree::LineItem.any_instance.stub(:save)
+
+      @order.add_variant(@variant, 1, [ option_value ])
+      @order.add_variant(@variant, 3, [ option_value ])
+
+      @order.line_items.length.should == 1
+      @order.line_items.first.quantity.should == 4
+
     end
 
   end
