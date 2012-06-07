@@ -41,6 +41,11 @@ describe "Product detail page" do
           page.should have_content @product.price + @option_value.adder
         end
 
+        it "should show the line item options" do
+          page.should have_content @option_value.presentation
+          page.should have_content @option_value.option_type.presentation
+        end
+
       end
 
     end
