@@ -25,8 +25,8 @@ describe Spree::OrdersController do
 
       Spree::Order.should_receive(:new).and_return order
 
-      order.should_receive(:add_variant).with(@variant, "1", [option_value.id])
-      post :populate, {:variants => {@variant.id => 1}, :options => options_params}
+      order.should_receive(:add_variant).with(@variant, 1, [option_value.id])
+      post :populate, {:variants => {@variant.id => "1"}, :options => options_params}
     end
 
     it "should handle regular request with no options" do
@@ -34,7 +34,7 @@ describe Spree::OrdersController do
       Spree::OptionValue.should_not_receive(:find)
 
       order.should_receive(:add_variant).with(@variant, 2)
-      post :populate, {:variants => {@variant.id => 2}}
+      post :populate, {:variants => {@variant.id => "2"}}
     end
 
   end
