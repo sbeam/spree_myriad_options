@@ -20,13 +20,13 @@ describe Spree::OrdersController do
       Spree::Variant.stub(:find).and_return @variant
     end
 
-    it "should handle parameter for photo" do
-      options_params = [option_value.id.to_s]
+    it "should handle parameter for list of option_value.id's" do
+      options_params = {option_type.id.to_s => option_value.id.to_s}
 
       Spree::Order.should_receive(:new).and_return order
 
-      order.should_receive(:add_variant).with(@variant, 1, options_params)
-      post :populate, {:variant_id => @variant.id, :option_values => options_params}
+      order.should_receive(:add_variant).with(@variant, "1", [option_value.id])
+      post :populate, {:variants => {@variant.id => 1}, :options => options_params}
     end
 
     it "should handle regular request with no options" do
