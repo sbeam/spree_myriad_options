@@ -14,10 +14,14 @@ describe Spree::LineItem do
     line_item.stub(:variant => variant, :order => order)
   end
 
-  context "#options" do
+  context "line_item.options" do
     it "should return the list of option types and values" do
       line_item.stub :option_values => [option_value]
-      line_item.options.should == [[ option_type , option_value ]]
+      line_item.options.should == { option_type => option_value }
+    end
+    it "should return true for has_options?" do
+      line_item.stub :option_values => [option_value]
+      line_item.has_options?.should be_true
     end
     it "should save copies of option type and value to join table", :pending => 'its horribly ugly' do
       line_item.option_values << option_value

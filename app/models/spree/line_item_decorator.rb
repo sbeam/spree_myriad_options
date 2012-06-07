@@ -7,12 +7,11 @@ Spree::LineItem.class_eval do
   # before_save :copy_options_values
 
   def options
-    self.option_values.map { |val| [ val.option_type, val ] }
+    Hash[ self.option_values.map { |val| [ val.option_type, val ] } ]
   end
 
-  def option_types
-    puts self.line_item_option_values.inspect
-    self.option_values.collect { |val| [val.option_type.name, val.option_type.presentation] }
+  def has_options?
+    self.option_values.count > 0
   end
 
   def copy_options_values
