@@ -1,0 +1,34 @@
+<div id="product-options" class="columns five alpha">
+  <ol class="product-option-type">
+
+  <%- @product.option_types.each do |option_type| %>
+    <li>
+      <%= option_type.presentation %>
+      <ul>
+
+        <%- option_type.option_values.each do |val| %>
+          <li>
+            <%-
+              checked = false # TODO
+            %>
+            <%= radio_button_tag "options[#{option_type.id}]", val.id, checked %>
+
+            <label for="<%= ['options', option_type.id, val.id].join('_') %>">
+              <span class="option-value">
+                <%= val.presentation %>
+              </span>
+              <%- if val.adder && val.adder > 0 %>
+                <span class="price diff option-adder">
+                  <%= number_to_currency val.adder %>
+                </span>
+              <%- end %>
+            </label>
+          </li>
+        <%- end %>
+
+      </ul>
+    </li>
+  <%- end %>
+  </ol>
+</div>
+
