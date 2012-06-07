@@ -11,7 +11,6 @@ describe Spree::Order do
     @line_item = Factory.build(:line_item, :order => @order) #let(:line_item) { Spree::LineItem.new :quantity => 1 }
     @variant = mock_model(Spree::Variant, :product => "product1", :price => 20.00)
     Spree::OptionValue.stub(:find).and_return(option_value)
-    #Spree::LineItem.any_instance.stub(:order => @order)
   end
 
   context "adding an item with options" do

@@ -11,7 +11,7 @@ Spree::LineItem.class_eval do
   end
 
   def has_options?
-    self.option_values.count > 0
+    self.option_values.length > 0
   end
 
   def copy_options_values
