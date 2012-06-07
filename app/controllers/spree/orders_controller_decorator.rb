@@ -14,7 +14,7 @@ Spree::OrdersController.class_eval do
         if variant = Spree::Variant.find(variant_id)
           quantity = quantity.to_i
 
-          option_values = Spree::OptionValue.where(:id => params[:options].values)
+          option_values = Spree::OptionValue.find(params[:options].values.map(&:to_i))
 
           @order.add_variant(variant, quantity, option_values)
         end

@@ -24,7 +24,7 @@ describe Spree::OrdersController do
       options_params = {option_type.id.to_s => option_value.id.to_s}
 
       Spree::Order.should_receive(:new).and_return order
-      Spree::OptionValue.should_receive(:where).and_return([option_value])
+      Spree::OptionValue.should_receive(:find).with([option_value.id]).and_return([option_value])
 
       order.should_receive(:add_variant).with(@variant, 1, [option_value])
       post :populate, {:variants => {@variant.id => "1"}, :options => options_params}
