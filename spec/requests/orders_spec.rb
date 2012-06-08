@@ -15,6 +15,7 @@ describe 'orders' do
   it "shows the line item options" do
     page.should have_content(option_type.presentation)
     page.should have_content(option_value.presentation)
+    page.should have_content(product.price + option_value.adder)
   end
 
 end

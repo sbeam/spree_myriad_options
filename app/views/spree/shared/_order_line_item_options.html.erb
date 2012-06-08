@@ -1,0 +1,8 @@
+    <ul class="line_item_options">
+      <%- item.options.each do |option_type, option_value| %>
+        <li>
+          <span class="line_item_option_type"><%= option_type.presentation %></span>
+          <span class="line_item_option_value"><%= option_value.presentation %></span>
+        </li>
+      <% end %>
+    </ul>

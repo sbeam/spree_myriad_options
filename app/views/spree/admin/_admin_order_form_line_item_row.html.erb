@@ -1,0 +1,6 @@
+<td width="300"><%= item.variant.product.name %>
+  <%= "(" + variant_options(item.variant) + ")" unless item.variant.option_values.empty? %>
+  <%- if item.has_options? %>
+    <%= render :partial => 'spree/shared/order_line_item_options', :locals => { :item => item } %>
+  <% end %>
+</td>

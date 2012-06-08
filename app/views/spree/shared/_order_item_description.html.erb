@@ -1,15 +1,7 @@
 <td data-hook="order_item_description">
   <h4><%= item.variant.product.name %></h4>
   <%= truncate(item.variant.product.description, :length => 100, :omission => "...") %>
-  <%= item.options.inspect %>
   <%- if item.has_options? %>
-    <ul class="line_item_options">
-      <%- item.options.each do |option_type, option_value| %>
-        <li>
-          <span class="line_item_option_type"><%= option_type.presentation %></span>
-          <span class="line_item_option_value"><%= option_value.presentation %></span>
-        </li>
-      <% end %>
-    </ul>
+    <%= render :partial => 'spree/shared/order_line_item_options', :locals => { :item => item } %>
   <% end %>
 </td>

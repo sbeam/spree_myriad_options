@@ -5,14 +5,7 @@
   <%= truncate(variant.product.description, :length => 100, :omission => "...") %>
 
   <%- if line_item.has_options? %>
-    <ul class="line_item_options">
-      <%- line_item.options.each do |option_type, option_value| %>
-        <li>
-          <span class="line_item_option_type"><%= option_type.presentation %></span>
-          <span class="line_item_option_value"><%= option_value.presentation %></span>
-        </li>
-      <% end %>
-    </ul>
+    <%= render :partial => 'spree/shared/order_line_item_options', :locals => { :item => line_item } %>
   <% end %>
 
 </td>
