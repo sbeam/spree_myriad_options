@@ -5,12 +5,16 @@ module Spree
 
     before_save :snapshot_option_values
 
+    serialize :customization
+
     def snapshot_option_values
-      self.adder = option_value.adder
-      self.value_name = option_value.name
-      self.value_presentation = option_value.presentation
-      self.type_name = option_value.option_type.name
-      self.type_presentation = option_value.option_type.presentation
+      if option_value
+        self.adder = option_value.adder
+        self.value_name = option_value.name
+        self.value_presentation = option_value.presentation
+        self.type_name = option_value.option_type.name
+        self.type_presentation = option_value.option_type.presentation
+      end
     end
 
   end
