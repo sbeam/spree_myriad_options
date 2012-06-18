@@ -2,17 +2,17 @@
 Gem::Specification.new do |s|
   s.platform    = Gem::Platform::RUBY
   s.name        = 'spree_myriad_options'
-  s.version     = '0.0.2'
-  s.summary     = 'TODO: Add gem summary here'
-  s.description = 'TODO: Add (optional) gem description here'
-  s.required_ruby_version = '>= 1.8.7'
+  s.version     = '0.1.0'
+  s.summary     = 'allow customers to add products with any combination of options to their cart. No variants needed!'
+  s.description = 'lets the customer choose any combination of Option Values for a Product when adding to cart, and enter customized text for an option if needed. No maintenance of Spree Variants for every option combination is required.'
+  s.required_ruby_version = '>= 1.9.2'
 
-  # s.author    = 'You'
-  # s.email     = 'you@example.com'
-  # s.homepage  = 'http://www.spreecommerce.com'
+  s.author    = 'Samuel Z Beam'
+  s.email     = 'sbeam@onsetcorps.net'
+  s.homepage  = 'http://www.onsetdevelopment.com'
 
-  #s.files       = `git ls-files`.split("\n")
-  #s.test_files  = `git ls-files -- {test,spec,features}/*`.split("\n")
+  s.files       = `git ls-files`.split("\n")
+  s.test_files  = `git ls-files -- {test,spec,features}/*`.split("\n")
 
   s.require_path = 'lib'
   s.requirements << 'none'

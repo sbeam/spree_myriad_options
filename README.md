@@ -11,21 +11,34 @@ combination of those options to customers, in a default Spree installation your
 store admin would be faced with creating and maintaining 97,656,259 Variants -
 just for that product.
 
-This extension bypasses both the Variant/Option Value relationship, and the
-Inventory management, to make that uneccessary. You just create the list of
-Option Types and Option Values normally in Spree, and associate those as needed
-to Products.
+This extension bypasses the LineItem/Variant/Option Value relationship to make
+that uneccessary. You just create the list of Option Types and Option Values
+normally in Spree, and associate those as needed to Products. A LineItem then
+has many OptionValue's directly, and only is tied to the 'master' variant for
+that product.
+
+Of course, with this extension, inventory is no longer tracked on a
+per-option-combination (Variant) basis. It is only tracked per-product (Master
+Variant).  The use case would assume that inventory is not important, or that
+products are manufactured to order.
 
 Changes to the Product add-to-cart form will list selections for each option as
 a set of radio buttons.
 
-Option Values also get a new 'adder' field, which is added to the line item
-price when that option is selected and added to the cart.
+In the admin, Option Values also get a new 'adder' field, which is added to the
+line item price when that option is selected and added to the cart.
+
+Option Values can also be set up by the admin with a "Customization Lines"
+numeric value, which may be useful for "Engraving Message" or similar
+user-entered text. This should result in the customer seeing the specified
+number of fields below each option value, which they can fill out as needed.
+There is as yet no validation on these user-generated values.
+
 
 Status
 ======
 
-Version 0.0.2
+Version 0.1.0
 
 Tests complete and passing.
 
@@ -54,11 +67,31 @@ Note, this extension might not jive with some others, like
 `spree_variant_options` (although it's a great extension, it still would
 require maintaining Variants for each option combination)
 
+Similar Gems
+------------
+
+You might also want to look at
+[spree_flexi_variants](https://github.com/jsqu99/spree_flexi_variants) which
+has similar goals, and more features than this. Since our needs were simpler,
+this was begun as a total rewrite that would simply provide a way around the
+Variant maintance problem in Spree, no more no less. There are now a few more
+features, but think of this as more a clean, well-tested blank-slate that can
+be built upon to meet your app's needs, rather than a turnkey install-and-go
+extension.
+
+TODO
+----
+
+  * replace simple `option_value.customization_lines` with Customization
+    classes, ie includable modules with field definitions and validation
+    callbacks
+  * (maybe) some JS to auto-update the price on the product detail form
+
 Contributions
 -------------
 
-More than welcome! any feedback, ideas, reports would be great. Patches should
-come with green tests.
+feedback, ideas, reports, new features and fixes would be great. Fork and
+create a pull request. Patches should come with green tests.
 
 Testing
 -------
