@@ -14,7 +14,9 @@ Spree::OrdersController.class_eval do
 
           option_values = Spree::OptionValue.find(params[:options].values.map(&:to_i))
 
-          @order.add_variant(variant, quantity, option_values)
+          line_item = @order.add_variant(variant, quantity, option_values)
+
+          line_item.customizations = params[:customizations] if params[:customizations]
         end
       end
 

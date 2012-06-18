@@ -28,6 +28,11 @@ describe Spree::Order do
       @order.item_count.should == 1
     end
 
+    it "should return an instance of LineItem" do
+      item = @order.add_variant(@variant, 1)
+      item.is_a?(Spree::LineItem).should be_true
+    end
+
   end
 
 

@@ -8,4 +8,6 @@ describe Spree::OptionValue do
               of_type(:decimal).
               with_options(:precision => 8, :scale => 2) }
 
+  it { should have_db_column(:customization_lines).of_type(:integer) }
+
 end
