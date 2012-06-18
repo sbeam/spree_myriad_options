@@ -45,7 +45,7 @@ describe Spree::LineItem do
                                            :adder => 11.99,
                                            :customization_lines => 2
 
-      @cust_params = { 'two-lines' => ['Congrats!','Love, Dad'] }
+      @cust_params = { option_value_customized.id => ['Congrats!','Love, Dad'] }
 
       line_item.option_values = [option_value_customized, option_value]
 
@@ -56,10 +56,10 @@ describe Spree::LineItem do
 
     it "should save customization params as serialized yaml" do
       opt = line_item.options.first
-      opt.customization.should == @cust_params['two-lines']
+      opt.customization.should == @cust_params.values.first
     end
 
-    it "should retrieve a hash of all customizations keyed by option_value.name", :focus => true do
+    it "should retrieve a hash of all customizations keyed by option_value.id" do
       line_item.customizations.should == @cust_params
     end
 

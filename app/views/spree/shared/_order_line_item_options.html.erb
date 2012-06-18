@@ -3,6 +3,15 @@
         <li>
           <span class="line_item_option_type"><%= option.type_presentation %></span>
           <span class="line_item_option_value"><%= option.value_presentation %></span>
+          <%- if option.customizable? %>
+            <div class="customizations" data-hook="cart_item_customizations">
+              <% option.customization.values.each do |cust_val| %>
+                <div class="customization_value">
+                  <%= cust_val %>
+                </div>
+              <% end %>
+            </div>
+          <%- end %>
         </li>
       <% end %>
     </ul>

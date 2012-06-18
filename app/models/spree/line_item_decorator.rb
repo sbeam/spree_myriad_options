@@ -18,8 +18,8 @@ Spree::LineItem.class_eval do
   end
 
   def customizations= params
-    params.each do |option_value_name, val|
-      if option = self.options.find_by_value_name(option_value_name)
+    params.each do |option_value_id, val|
+      if option = self.options.find_by_option_value_id(option_value_id)
         option.customization = val
         option.save
       end
@@ -27,7 +27,7 @@ Spree::LineItem.class_eval do
   end
 
   def customizations
-    self.options.each_with_object({}) { |opt, h| h[opt.value_name] = opt.customization unless opt.customization.blank? }
+    self.options.each_with_object({}) { |opt, h| h[opt.option_value_id] = opt.customization unless opt.customization.blank? }
   end
 
 end

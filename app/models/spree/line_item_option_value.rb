@@ -7,6 +7,12 @@ module Spree
 
     serialize :customization
 
+    def customizable?
+      !self.option_value.customization_lines.blank?
+    end
+
+    private
+
     def snapshot_option_values
       if option_value
         self.adder = option_value.adder

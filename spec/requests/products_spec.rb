@@ -53,4 +53,37 @@ describe "Product detail page" do
       end
 
     end
+
+    context "in the add to cart form with customizations" do
+
+      before do
+        @option_type = Factory(:option_type, :name => 'tank-name', :presentation => 'Name to paint on the tank')
+        @customizable = Factory(:option_value, :name => 'two-lines', :presentation => 'Two Lines', :customization_lines => 2, :option_type => @option_type)
+        @product.option_types << @option_type
+
+        visit spree.product_path(@product)
+      end
+
+      it "should show the fields for customization lines" do
+        page.should have_content(@option_type.presentation)
+        find(".product-option-type li#option_value_#{@customizable.id} .customization").should have_css(%Q|input[type=text]|)
+      end
+
+      context "when adding to cart" do
+
+        before do
+          choose 'Two Lines'
+          fill_in "customizations_#{@customizable.id}_0", :with => 'Zed'
+          fill_in "customizations_#{@customizable.id}_1", :with => 'is Dead'
+          click_button 'Add To Cart'
+        end
+
+        it "should show the customization values" do
+          find('td[data-hook=cart_item_description]').should have_content @customizable.presentation
+          find('td[data-hook=cart_item_description]').should have_content 'Zed'
+          find('td[data-hook=cart_item_description]').should have_content 'is Dead'
+        end
+      end
+
+    end
 end

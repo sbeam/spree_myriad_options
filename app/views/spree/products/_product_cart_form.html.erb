@@ -23,7 +23,16 @@
                 </span>
               <%- end %>
             </label>
+
+            <%- if val.customization_lines %>
+              <div class="customization">
+                <%- val.customization_lines.times do |i| %>
+                  <%= text_field_tag "customizations[#{val.id}][#{i}]" %>
+                <%- end %>
+              </div>
+            <%- end %>
           </li>
+
         <%- end %>
 
       </ul>
