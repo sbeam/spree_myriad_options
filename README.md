@@ -47,7 +47,7 @@ Example
 
 Add to gemfile
 
-    gem 'spree_myriad_options', :git => 'git://github.com/sbeam/spree_myriad_options.git'
+    gem 'spree_myriad_options', :git => 'git://github.com/chrise86/spree_myriad_options.git'
 
 Install
 
