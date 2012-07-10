@@ -3,7 +3,7 @@ module SpreeMyriadOptions
     class InstallGenerator < Rails::Generators::Base
 
       def add_migrations
-        rake 'railties:install:migrations'
+        run 'railties:install:migrations'
       end
 
       def run_migrations
