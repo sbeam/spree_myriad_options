@@ -52,8 +52,8 @@ Add to gemfile
 Install
 
     $ bundle
-    $ bundle exec rake railties:install:migrations FROM=spree_myriad_options
-    $ bundle exec rake db:migrate
+    $ rails generate spree_myriad_options:install
+    $ rake db:migrate # (if not run during install)
 
 Restart Rails, and in your Products admin, add some Option Types and Values to
 a Product (and remove any Variants - only the invisible 'master' Variant should
