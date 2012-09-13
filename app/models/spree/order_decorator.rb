@@ -5,16 +5,6 @@ Spree::Order.class_eval do
       line_items.detect { |line_item| line_item.variant_id == variant.id  && line_item.option_values == options }
   end
 
-  def contains_with_options? variant, options=nil
-      if options
-          find_line_item_by_variant_and_options(variant, options)
-      else
-          contains_without_options?(variant)
-      end
-  end
-
-  alias_method_chain :'contains?', :options
-
   def add_variant variant, quantity=1, options=nil
 
     current_item = find_line_item_by_variant_and_options(variant, options)
