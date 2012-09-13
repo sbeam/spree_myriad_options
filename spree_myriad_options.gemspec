@@ -2,7 +2,7 @@
 Gem::Specification.new do |s|
   s.platform    = Gem::Platform::RUBY
   s.name        = 'spree_myriad_options'
-  s.version     = '0.1.1'
+  s.version     = '0.1.2'
   s.summary     = 'allow customers to add products with any combination of options to their cart. No variants needed!'
   s.description = 'lets the customer choose any combination of Option Values for a Product when adding to cart, and enter customized text for an option if needed. No maintenance of Spree Variants for every option combination is required.'
   s.required_ruby_version = '>= 1.9.2'
