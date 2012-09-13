@@ -17,7 +17,7 @@ describe Spree::Order do
 
     it "should associate the options with the line item" do
       Spree::LineItem.stub(:new).and_return(@line_item)
-      @order.should_receive(:contains?).with(@variant, [option_value]).and_return( false )
+      @order.should_receive(:find_line_item_by_variant_and_options).with(@variant, [option_value]).and_return( false )
 
       @order.add_variant(@variant, 1, [option_value])
       @line_item.option_values.should == [option_value]
