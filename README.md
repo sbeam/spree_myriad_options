@@ -38,9 +38,9 @@ There is as yet no validation on these user-generated values.
 Status
 ======
 
-Version 0.1.0
-
-Tests complete and passing.
+0.1.0 - Tests complete and passing.
+0.1.1 - bugfix for edge case
+0.1.2 - Works with spree 1.1.3
 
 Example
 =======
