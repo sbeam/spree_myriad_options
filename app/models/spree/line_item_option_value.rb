@@ -11,6 +11,10 @@ module Spree
       !self.option_value.customization_lines.blank?
     end
 
+    def customized?
+      customizable? && !self.customization.blank?
+    end
+
     private
 
     def snapshot_option_values
