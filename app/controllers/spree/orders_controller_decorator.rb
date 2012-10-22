@@ -1,9 +1,11 @@
 Spree::OrdersController.class_eval do
 
+  alias_method :populate_without_spree_myriad_options, :populate
+
   # prepend to orders#populate to
   # look for params[:options] and attach the option values
   # to the add_variant call
-  def populate_with_options
+  def populate
     @order = current_order(true)
 
     if params[:options].present? && params[:variants]
@@ -23,9 +25,7 @@ Spree::OrdersController.class_eval do
       params.delete(:variants) # prevent populate_orig from adding again
     end
 
-    populate_without_options
+    populate_without_spree_myriad_options
   end
-
-  alias_method_chain :populate, :options
 
 end
