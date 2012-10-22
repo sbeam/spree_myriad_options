@@ -1,14 +1,13 @@
 Spree::Order.class_eval do
 
-  def contains? variant, options
-    options ||= []
-    line_items.detect { |line_item| line_item.variant_id == variant.id && line_item.option_values == options }
+  def find_line_item_by_variant_and_options variant, options
+      options ||= []
+      line_items.detect { |line_item| line_item.variant_id == variant.id  && line_item.option_values == options }
   end
-
 
   def add_variant variant, quantity=1, options=nil
 
-    current_item = contains?(variant, options)
+    current_item = find_line_item_by_variant_and_options(variant, options)
 
     if current_item
       current_item.quantity += quantity

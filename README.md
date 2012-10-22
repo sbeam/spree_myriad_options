@@ -38,9 +38,9 @@ There is as yet no validation on these user-generated values.
 Status
 ======
 
-Version 0.1.0
-
-Tests complete and passing.
+0.1.0 - Tests complete and passing.
+0.1.1 - bugfix for edge case
+0.1.2 - Works with spree 1.1.3
 
 Example
 =======
@@ -52,8 +52,8 @@ Add to gemfile
 Install
 
     $ bundle
-    $ bundle exec rake railties:install:migrations FROM=spree_myriad_options
-    $ bundle exec rake db:migrate
+    $ rails generate spree_myriad_options:install
+    $ rake db:migrate # (if not run during install)
 
 Restart Rails, and in your Products admin, add some Option Types and Values to
 a Product (and remove any Variants - only the invisible 'master' Variant should

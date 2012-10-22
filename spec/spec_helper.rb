@@ -1,9 +1,11 @@
 # Configure Rails Environment
 ENV['RAILS_ENV'] = 'test'
 
-# TODO this is wired to a fresh new spree install elsewhere, until the issue with
+path_to_test_store = '../dummy';
+
+# in Spree 1.1.1, wire to a fresh new spree install elsewhere, until the issue with
 # isolating the test/dummy app can be address, see github issue #1580
-path_to_test_store = '../../../teststore';
+# path_to_test_store = '../../../teststore';
 
 require File.expand_path("#{path_to_test_store}/config/environment.rb",  __FILE__)
 
