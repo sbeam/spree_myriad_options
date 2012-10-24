@@ -1,13 +1,12 @@
 Spree::Order.class_eval do
 
-  def find_line_item_by_variant_and_options variant, options
+  def look_for_same_item variant, options, other_attrs
       options ||= []
       line_items.detect { |line_item| line_item.variant_id == variant.id  && line_item.option_values == options }
   end
 
-  def add_variant variant, quantity=1, options=nil
-
-    current_item = find_line_item_by_variant_and_options(variant, options)
+  def add_variant variant, quantity=1, options=nil, other_attrs={}
+    current_item = look_for_same_item variant, options, other_attrs
 
     if current_item
       current_item.quantity += quantity
